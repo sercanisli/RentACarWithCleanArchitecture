@@ -10,8 +10,9 @@ namespace Application
 {
     public static class ApplicationServiceRegistration
     {
-        public static IServiceCollection AddAplicationServies(this IServiceCollection services)
+        public static IServiceCollection AddAplicationServices(this IServiceCollection services)
         {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
