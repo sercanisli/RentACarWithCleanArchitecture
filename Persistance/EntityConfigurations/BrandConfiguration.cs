@@ -20,6 +20,8 @@ namespace Persistance.EntityConfigurations
             builder.Property(b => b.CreatedDate).HasColumnName("CreatedDate").IsRequired();
             builder.Property(b => b.UpdatedDate).HasColumnName("UpdatedDate");
             builder.Property(b => b.DeletedDate).HasColumnName("DeletedDate");
+            builder.HasIndex(indexExpression: b => b.Name, name: "UK_Brands_Name").IsUnique();
+            builder.HasMany(b => b.Models);
 
             //Global Query Filter
             builder.HasQueryFilter(b => !b.DeletedDate.HasValue);
