@@ -12,7 +12,7 @@ namespace Domain.Entities
         {
             Models = new HashSet<Model>();
         }
-        public Fuel(Guid id, string name):this()
+        public Fuel(Guid id, string name) : this()
         {
             Id = id;
             Name = name;

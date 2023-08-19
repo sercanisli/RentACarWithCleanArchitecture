@@ -31,7 +31,7 @@ namespace Application.Features.Models.Queries.GetListByDynamic
             public async Task<GetListResponse<GetListByDynamicModelListItemDto>> Handle(GetListByDynamicModelQuery request, CancellationToken cancellationToken)
             {
                 Paginate<Model> models = await _modelRepository.GetListByDynamicAsync(
-                    dynamic:request.DynamicQuery,
+                    request.DynamicQuery,
                     include: m => m.Include(m => m.Brand).Include(m => m.Fuel).Include(m => m.Transmission),
                     index: request.PageRequest.PageIndex,
                     size: request.PageRequest.PageSize
