@@ -1,21 +1,23 @@
 ﻿using Application.Services.Repositories;
 using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using Core.Application.Request;
 using Core.Application.Responses;
 using Core.Persistance.Paging;
 using Domain.Entities;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Brands.Quaries.GetList
 {
-    public class GetListBrandQuery:IRequest<GetListResponse<GetListBrandListItemDto>>
+    public class GetListBrandQuery:IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
     {
         public PageRequest PageRequest { get; set; }
+
+        public string CacheKey => $"GetListBrandQuery({PageRequest.PageIndex},{PageRequest.PageSize})";
+
+        public bool BypassCache { get; }
+
+        public TimeSpan? SlidingExpiration { get; }
 
         public class GetListBrandHandler : IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>
         {

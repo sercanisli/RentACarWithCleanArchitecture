@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddAplicationServices();
 builder.Services.AddPersistanceServices(builder.Configuration);
 
+//builder.Services.AddDistributedMemoryCache();
+builder.Services.AddStackExchangeRedisCache(option=>option.Configuration="localhost:6379");
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
